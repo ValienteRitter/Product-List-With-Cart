@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.app-container, .product-list, .product-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-container {
+    padding: 1rem;
+}
+
+.product-item-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-item-image > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product-item-image > button {
+    width: 50%;
+    height: 3rem;
+    position: relative;
+    top: -25px;
+    border-radius: 30px;
+}
+
+.product-name {
+    margin-bottom: 1rem;
+}
+
+.price {
+    margin: 0;
+}
