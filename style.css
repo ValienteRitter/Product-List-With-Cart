@@ -24,9 +24,13 @@ html, body {
     background-color: var(--rose-100);
 }
 
-.app-container, .product-list, .product-item {
+.app-container, main, .product-list, .product-item {
     display: flex;
     flex-direction: column;
+}
+
+main {
+    gap: 1rem;
 }
 
 .app-container {
@@ -52,6 +56,7 @@ html, body {
     position: relative;
     top: -25px;
     border-radius: 30px;
+    background-color: white;
 }
 
 .product-name {
@@ -60,5 +65,25 @@ html, body {
 
 .price {
     margin: 0;
+    color: var(--red);
 }
 
+.cart {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.cart > h2 {
+    margin: 0;
+    color: var(--red);
+}
+
+.cart > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
