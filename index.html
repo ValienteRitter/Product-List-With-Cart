@@ -7,8 +7,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="app-container">
+        <Header>
+            <h1>Desserts</h1>
+        </Header>
 
+        <main>
+            <section class="product-list">
+                <div class="product-item">
+                    <img src="/assets/images/image-waffle-mobile.jpg" alt="">
+                    <button></button>
+                    <div>
+                        <span class="category">Waffle</span>
+                        <h2 class="produc-name">Waffle</h2>
+                        <p class="price">$5.60</p>
+
+                    </div>
+                </div>
+            </section>
+            <dialog>
+                <div class="order-confirmed-menu">
+                    <h1>Order Confirmed</h1>
+                    <p>We hope you enjoy your food!</p>
+                    <div class="ordered-products-list"></div>
+                    <button>Start New Order</button>
+                </div>
+            </dialog>
+            <section class="cart">
+                <div>
+                    <h2>Your Cart</h2>
+                    <img src="/assets/images/illustration-empty-cart.svg" alt="">
+                    <p>Your added items will appear here</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
 
     <script src="script.js"></script>
