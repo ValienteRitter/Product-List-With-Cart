@@ -187,7 +187,15 @@ buttons.forEach(button => button.addEventListener('click', e => {
             <hr>
             `
         )
-    }) 
+    })
+    cartSection.insertAdjacentHTML('beforeend', 
+        `
+        <div class='total'>
+            <p>Order Total</p>
+            <p>$${cart.total}</p>
+        </div>
+        `
+    ) 
     console.log(cart.list);
     console.log(cart.total);
 }))

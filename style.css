@@ -119,3 +119,9 @@ main {
 .name {
     grid-column: 1 / 4;
 }
+
+.total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
