@@ -182,6 +182,7 @@ buttons.forEach(button => button.addEventListener('click', e => {
                 <p class='name'>${name}</p>
                 <p>${cart.getProductCount(name)}</p>
                 <p>@$${price}</p>
+                <p>$${price * cart.getProductCount(name)}</p>
             </div>
             <hr>
             `
