@@ -129,7 +129,7 @@ class Cart {
     }
 
     orderProduct(e) {
-        this.list.push(products.find(({name}) => name === e.target.parentNode.parentNode.id))
+        this.list.push(products.find(({name}) => name === e.target.closest('.product-item').id))
     }
 
     calculateTotal() {
