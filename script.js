@@ -119,8 +119,29 @@ const products = [
     name: "Vanilla Panna Cotta",
     category: "Panna Cotta",
     price: 6.50
-  }
+}
 ];
+
+class Cart {
+    constructor() {
+        this.list = []
+        this.total = 0
+    }
+
+    orderProduct(e) {
+        this.list.push(products.find(({name}) => name === e.target.parentNode.parentNode.id))
+    }
+
+    calculateTotal() {
+        this.total = this.list.reduce((acc, {price}) => acc + price, 0)
+    }
+
+    getProductCount(productName) {
+        return this.list.filter(({name}) => name === productName).length
+    }
+}
+
+const cart = new Cart()
 
 function renderProducts(data) {
     data.forEach(({image, category, name, price}) => {
@@ -146,28 +167,24 @@ function renderProducts(data) {
 renderProducts(products)
 
 
-class Cart {
-    constructor() {
-        this.list = []
-        this.total = 0
-    }
 
-    orderProduct(e) {
-        this.list.push(products.find(({name}) => name === e.target.parentNode.parentNode.id))
-    }
-
-    calculateTotal() {
-        this.total = this.list.reduce((acc, {price}) => acc + price, 0)
-    }
-}
-
-const cart = new Cart()
 
 buttons.forEach(button => button.addEventListener('click', e => {
     cart.orderProduct(e)
     cart.calculateTotal()
+    cartSection.innerHTML = `<h2>Your cart (${cart.list.length})</h2>`
+    cart.list.forEach(({name, price}) => {
+        cartSection.insertAdjacentHTML("beforeend",
+            `
+            <div class='not-empty-art'>
+                <h3>${name}</h3>
+                <p>${cart.getProductCount(name)}</p>
+                <p>@$${price}</p>
+            </div>
+            <hr>
+            `
+        )
+    }) 
     console.log(cart.list);
     console.log(cart.total);
 }))
-
-
