@@ -35,6 +35,20 @@ html, body {
     }
 }
 
+@media(min-width: 700px) {
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media(min-width: 700px) {
+    .product-list > h1 {
+        grid-column: 1 / 4;
+    }
+}
+
 main {
     gap: 1rem;
 }
