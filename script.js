@@ -173,11 +173,13 @@ buttons.forEach(button => button.addEventListener('click', e => {
     cart.orderProduct(e)
     cart.calculateTotal()
     cartSection.innerHTML = `<h2>Your cart (${cart.list.length})</h2>`
-    cart.list.forEach(({name, price}) => {
+    const dataSet = new Set(cart.list)
+    console.log(dataSet);
+    dataSet.forEach(({name, price}) => {
         cartSection.insertAdjacentHTML("beforeend",
             `
-            <div class='not-empty-art'>
-                <h3>${name}</h3>
+            <div class='order'>
+                <p class='name'>${name}</p>
                 <p>${cart.getProductCount(name)}</p>
                 <p>@$${price}</p>
             </div>
