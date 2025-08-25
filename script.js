@@ -3,8 +3,9 @@ const appContainer = document.querySelector('.app-container');
 const main = document.querySelector('main');
 
 // Product list section
-const productList = document.querySelector('.product-list');
-const productItems = document.querySelectorAll('.product-item'); // all product items
+let productList = document.querySelector('.product-list');
+let productItems = document.querySelectorAll('.product-item'); // all product items
+let buttons = document.querySelectorAll('selector');
 
 // Dialog 
 const orderDialog = document.querySelector('dialog');
@@ -13,7 +14,7 @@ const orderedProductsList = document.querySelector('.ordered-products-list');
 const orderConfirmedMenuButton = document.querySelector('.order-confirmed-menu button');
 
 // Cart section
-const cart = document.querySelector('.cart');
+const cartSection = document.querySelector('.cart');
 const cartHeading = document.querySelector('.cart h2');
 const cartEmptyImage = document.querySelector('.cart img');
 const cartEmptyMessage = document.querySelector('.cart p');
@@ -124,7 +125,7 @@ const products = [
 function renderProducts(data) {
     data.forEach(({image, category, name, price}) => {
         productList.insertAdjacentHTML("beforeend",
-            `<div class="product-item">
+            `<div class="product-item" id="${name}">
                     <div class="product-item-image">
                         <img src="${image.desktop}" alt="">
                         <button>Add to Cart</button>
@@ -137,7 +138,36 @@ function renderProducts(data) {
                 </div>`
         )
     })
+    productList = document.querySelector('.product-list');
+    productItems = document.querySelectorAll('.product-item'); 
+    buttons = productList.querySelectorAll('button');
 }
 
 renderProducts(products)
+
+
+class Cart {
+    constructor() {
+        this.list = []
+        this.total = 0
+    }
+
+    orderProduct(e) {
+        this.list.push(products.find(({name}) => name === e.target.parentNode.parentNode.id))
+    }
+
+    calculateTotal() {
+        this.total = this.list.reduce((acc, {price}) => acc + price, 0)
+    }
+}
+
+const cart = new Cart()
+
+buttons.forEach(button => button.addEventListener('click', e => {
+    cart.orderProduct(e)
+    cart.calculateTotal()
+    console.log(cart.list);
+    console.log(cart.total);
+}))
+
 
