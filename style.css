@@ -28,6 +28,12 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+@media(min-width: 700px) {
+    main {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 
 main {
     gap: 1rem;
@@ -74,6 +80,7 @@ main {
     flex-direction: column;
     padding: 1rem;
     border-radius: 10px;
+    height: fit-content;
 }
 
 .cart > h2 {
