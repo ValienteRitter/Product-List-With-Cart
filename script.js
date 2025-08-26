@@ -19,6 +19,8 @@ const cartHeading = document.querySelector('.cart h2');
 const cartEmptyImage = document.querySelector('.cart img');
 const cartEmptyMessage = document.querySelector('.cart p');
 
+const confirmButton = document.createElement('button')
+
 
 const products = [
   {
@@ -166,7 +168,9 @@ function renderProducts(data) {
 
 renderProducts(products)
 
+function updateOrder() {
 
+}
 
 
 buttons.forEach(button => button.addEventListener('click', e => {
@@ -196,6 +200,19 @@ buttons.forEach(button => button.addEventListener('click', e => {
         </div>
         `
     ) 
+    cartSection.appendChild(confirmButton)
     console.log(cart.list);
     console.log(cart.total);
 }))
+
+
+
+confirmButton.addEventListener('click', () => {
+  orderDialog.showModal()
+})
+
+confirmButton.textContent = 'Confirm Order'
+confirmButton.style.backgroundColor = 'hsl(14, 86%, 42%)'
+confirmButton.style.borderRadius = '10px'
+confirmButton.style.border = 'none'
+confirmButton.style.padding = '1rem'
