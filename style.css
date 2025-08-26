@@ -125,3 +125,71 @@ main {
     flex-direction: row;
     justify-content: space-between;
 }
+
+dialog {
+    width: 60%;
+}
+
+hr {
+    width: 100%;
+}
+.order-confirmed-menu > button {
+    width: 100%;
+    background-color: var(--red);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 1rem;
+}
+
+.ordered-products-list {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--rose-100);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    /* gap: 1rem; */
+}
+
+.order-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-img {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.order-img > img {
+    height: 5rem;
+    border-radius: 10px;
+}
+
+.order-info > p {
+    margin: 0;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-count {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 1rem;
+}
+
+.order-count > p:first-of-type {
+    color: var(--red);
+}
+
+.total-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
