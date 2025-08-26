@@ -185,11 +185,12 @@ function createOrder({ name, price }) {
     nameP.classList.add("name");
 
     nameP.textContent = name;
-    countP.textContent = cart.getProductCount(name) + 'x';
+    countP.textContent = cart.getProductCount(name) + "x";
     priceP.textContent = "$" + price;
-    totalPriceP.textContent = "$" + (cart.getProductCount(name) * price);
+    totalPriceP.textContent = "$" + cart.getProductCount(name) * price;
     orderContainer.append(nameP, countP, priceP, totalPriceP);
 
+    countP.style.color = "hsl(14, 86%, 42%)";
     return orderContainer;
 }
 
@@ -202,7 +203,10 @@ buttons.forEach((button) =>
         console.log(dataSet);
         dataSet.forEach((product) => {
             cartSection.append(createOrder(product));
-            cartSection.lastElementChild.insertAdjacentHTML("afterend", `<hr></hr>`)
+            cartSection.lastElementChild.insertAdjacentHTML(
+                "afterend",
+                `<hr></hr>`
+            );
         });
         cartSection.insertAdjacentHTML(
             "beforeend",
@@ -221,8 +225,9 @@ buttons.forEach((button) =>
 
 confirmButton.addEventListener("click", () => {
     const dataSet = new Set(cart.list);
-    dataSet.forEach(({name, price, image}) => {
-        orderedProductsList.insertAdjacentHTML('beforeend', 
+    dataSet.forEach(({ name, price, image }) => {
+        orderedProductsList.insertAdjacentHTML(
+            "beforeend",
             `
             <div class='order-item'>
                 <div class='order-img'>
@@ -239,16 +244,17 @@ confirmButton.addEventListener("click", () => {
             </div>
             <hr>
             `
-        )
+        );
     });
-    orderedProductsList.insertAdjacentHTML("beforeend", 
+    orderedProductsList.insertAdjacentHTML(
+        "beforeend",
         `
             <div class='total-price'>
                 <p>Order Total</p>
                 <p>$${cart.total}</p>
             </div>
         `
-    )
+    );
     orderDialog.showModal();
 });
 
@@ -257,4 +263,4 @@ confirmButton.style.backgroundColor = "hsl(14, 86%, 42%)";
 confirmButton.style.borderRadius = "10px";
 confirmButton.style.border = "none";
 confirmButton.style.padding = "1rem";
-confirmButton.style.color = 'white'
+confirmButton.style.color = "white";

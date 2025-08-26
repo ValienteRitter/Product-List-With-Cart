@@ -10,33 +10,37 @@
 }
 
 @font-face {
-    font-family: 'Red Hat Text';
-    src: url('/assets/fonts/RedHatText-VariableFont_wght.ttf');
+    font-family: "Red Hat Text";
+    src: url("/assets/fonts/RedHatText-VariableFont_wght.ttf");
 }
 
 * {
     box-sizing: border-box;
-    font-family: 'Red Hat Text';
+    font-family: "Red Hat Text";
     font-size: 16px;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     background-color: var(--rose-100);
 }
 
-.app-container, main, .product-list, .product-item {
+.app-container,
+main,
+.product-list,
+.product-item {
     display: flex;
     flex-direction: column;
 }
-@media(min-width: 700px) {
+@media (min-width: 700px) {
     main {
         flex-direction: row;
         justify-content: space-around;
     }
 }
 
-@media(min-width: 700px) {
+@media (min-width: 700px) {
     .product-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -44,7 +48,7 @@ html, body {
     }
 }
 
-@media(min-width: 700px) {
+@media (min-width: 700px) {
     .product-list > h1 {
         grid-column: 1 / 4;
     }
