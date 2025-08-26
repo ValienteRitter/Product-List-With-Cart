@@ -185,9 +185,9 @@ function createOrder({ name, price }) {
     nameP.classList.add("name");
 
     nameP.textContent = name;
-    countP.textContent = cart.getProductCount(name);
+    countP.textContent = cart.getProductCount(name) + 'x';
     priceP.textContent = "$" + price;
-    totalPriceP.textContent = "$" + cart.getProductCount(name) * price;
+    totalPriceP.textContent = "$" + (cart.getProductCount(name) * price);
     orderContainer.append(nameP, countP, priceP, totalPriceP);
 
     return orderContainer;
@@ -201,7 +201,8 @@ buttons.forEach((button) =>
         const dataSet = new Set(cart.list);
         console.log(dataSet);
         dataSet.forEach((product) => {
-            cartSection.appendChild(createOrder(product));
+            cartSection.append(createOrder(product));
+            cartSection.lastElementChild.insertAdjacentHTML("afterend", `<hr></hr>`)
         });
         cartSection.insertAdjacentHTML(
             "beforeend",
@@ -220,9 +221,34 @@ buttons.forEach((button) =>
 
 confirmButton.addEventListener("click", () => {
     const dataSet = new Set(cart.list);
-    dataSet.forEach((product) => {
-        orderDialog.appendChild(createOrder(product));
+    dataSet.forEach(({name, price, image}) => {
+        orderedProductsList.insertAdjacentHTML('beforeend', 
+            `
+            <div class='order-item'>
+                <div class='order-img'>
+                    <img src='${image.desktop}'>
+                    <div class='order-info'>
+                        <p>${name}</p>
+                        <div class='order-count'>
+                            <p>${cart.getProductCount(name)}x</p>
+                            <p>$${price}</p>
+                        </div>
+                    </div>
+                </div>
+                <p>$${price * cart.getProductCount(name)}</p>
+            </div>
+            <hr>
+            `
+        )
     });
+    orderedProductsList.insertAdjacentHTML("beforeend", 
+        `
+            <div class='total-price'>
+                <p>Order Total</p>
+                <p>$${cart.total}</p>
+            </div>
+        `
+    )
     orderDialog.showModal();
 });
 
@@ -231,3 +257,4 @@ confirmButton.style.backgroundColor = "hsl(14, 86%, 42%)";
 confirmButton.style.borderRadius = "10px";
 confirmButton.style.border = "none";
 confirmButton.style.padding = "1rem";
+confirmButton.style.color = 'white'
