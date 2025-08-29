@@ -5,14 +5,14 @@ const main = document.querySelector("main");
 // Product list section
 let productList = document.querySelector(".product-list");
 let productItems = document.querySelectorAll(".product-item"); // all product items
-let buttons = document.querySelectorAll("selector");
+let buttons = document.querySelectorAll("add-button");
 
 // Dialog
 const orderDialog = document.querySelector("dialog");
 const orderConfirmedMenu = document.querySelector(".order-confirmed-menu");
 const orderedProductsList = document.querySelector(".ordered-products-list");
 const orderConfirmedMenuButton = document.querySelector(
-    ".order-confirmed-menu button"
+    ".order-confirmed-menu-button"
 );
 
 // Cart section
@@ -157,7 +157,7 @@ function renderProducts(data) {
             `<div class="product-item" id="${name}">
           <div class="product-item-image">
               <img src="${image.desktop}" alt="">
-              <button>Add to Cart</button>
+              <button class='add-button'>Add to Cart</button>
           </div>
           <div class="product-item-info">
               <span class="category">${category}</span>
@@ -225,6 +225,8 @@ buttons.forEach((button) =>
 
 confirmButton.addEventListener("click", () => {
     const dataSet = new Set(cart.list);
+    const orderedProductsList = document.querySelector(".ordered-products-list");
+
     dataSet.forEach(({ name, price, image }) => {
         orderedProductsList.insertAdjacentHTML(
             "beforeend",
@@ -256,7 +258,33 @@ confirmButton.addEventListener("click", () => {
         `
     );
     orderDialog.showModal();
+
+    const orderConfirmedMenuButton = document.querySelector(".order-confirmed-menu-button");
+    orderConfirmedMenuButton.addEventListener('click', orderConfirm)
 });
+
+function orderConfirm() {
+    cart.list = []
+    cart.total = 0
+    cartSection.innerHTML = 
+    `
+    <h2>Your Cart</h2>
+    <div class="empty-cart">
+    <img src="/assets/images/illustration-empty-cart.svg" alt="">
+    <p>Your added items will appear here</p>
+    </div>
+    `
+    orderConfirmedMenu.innerHTML = 
+    `
+    <h1>Order Confirmed</h1>
+    <p>We hope you enjoy your food!</p>
+    <div class="ordered-products-list"></div>
+    <button class="order-confirmed-menu-button">Start New Order</button>
+    `
+    orderDialog.close()
+}
+
+
 
 confirmButton.textContent = "Confirm Order";
 confirmButton.style.backgroundColor = "hsl(14, 86%, 42%)";
